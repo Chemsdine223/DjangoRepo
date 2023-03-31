@@ -1,4 +1,4 @@
 psycopg2
 dj-database-url
 gunicorn
-rest_framework
+djangorestframework
