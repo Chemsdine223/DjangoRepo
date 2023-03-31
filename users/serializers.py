@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from users.models import CustomUser
@@ -75,5 +76,5 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
             validated_data["password"]
         )
         user.save()
-        return user
+        return render(self, 'my_template.html', user)
     
