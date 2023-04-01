@@ -76,5 +76,5 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
             validated_data["password"]
         )
         user.save()
-        return render(self, 'my_template.html', user)
+        return user
     
