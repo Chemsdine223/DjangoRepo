@@ -77,5 +77,5 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
             validated_data["password"]
         )
         user.save()
-        return render(user,content_type='application/json')
+        return user
     

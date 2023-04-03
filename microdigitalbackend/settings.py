@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # 'rest_framework',
+    'rest_framework',
     'users',
     'authtokens',
     'rest_framework_simplejwt.token_blacklist'
@@ -71,19 +71,19 @@ WSGI_APPLICATION = "microdigitalbackend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": 'micro_digital2',
-#         'USER': 'Chemsdine',
-#         'PASSWORD': 'Admin',
-#         'HOST':'localhost'
-#     }
-# }
-
 DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": 'micro_digital2',
+        'USER': 'Chemsdine',
+        'PASSWORD': 'Admin',
+        'HOST':'localhost'
+    }
 }
+
+# DATABASES = {
+#     "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
