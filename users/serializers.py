@@ -5,6 +5,13 @@ from users.models import CustomUser
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.response import Response
 
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = "__all__"
+
+
 class CustomUserRegisterSerializer(serializers.ModelSerializer):
         
     nni = serializers.IntegerField(
@@ -25,7 +32,7 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
             )
         ]
     )
-
+    
     password = serializers.CharField(
         write_only = True,
         required = True,
