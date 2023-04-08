@@ -13,6 +13,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.settings import api_settings
 
 
+# Create your views here.
 
 class UserLoginView(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
@@ -29,13 +30,14 @@ class UserLoginView(ObtainAuthToken):
                 'access':str(refresh.access_token)
             })  # replace 'home' with the name of your homepage URL pattern
         else:
-            return Response({'status': False,'message':'Login ou mot de passe incorrect'}) 
+            return Response({'status': False,
+                             'message':'Login ou mot de passe incorrect',
+                             }) 
     
     
 
 
 
-# Create your views here.
 class CustomUserRegisterView(generics.CreateAPIView):
     
     
