@@ -75,7 +75,7 @@ WSGI_APPLICATION = "microdigitalbackend.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": 'micro_digital2',
+        "NAME": 'micro',
         'USER': 'Chemsdine',
         'PASSWORD': 'Admin',
         'HOST':'localhost'
