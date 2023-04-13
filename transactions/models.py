@@ -15,5 +15,5 @@ class Loan(models.Model):
     loan_end_date = models.DateField()
     repayment_method = models.CharField(max_length=50)
     
-    def __str__(self):
-        return str(self.borrower.nni)
+    # def __str__(self):
+    #     return str(self.borrower.nni)
