@@ -29,4 +29,4 @@ class LoanListView(generics.ListAPIView):
         query =Loan.objects.filter(borrower=user)
         serializer=LoanSerializer(query,many=True)
         return  Response(serializer.data)
-    
+        
