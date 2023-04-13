@@ -29,6 +29,6 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
         ]
     
     
-    def __str__(self):
-        return self.phone
+    # def __str__(self):
+    #     return self.phone
     
