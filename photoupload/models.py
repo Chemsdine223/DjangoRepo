@@ -10,5 +10,5 @@ class PhotoModel(models.Model):
         
     
     def __str__(self):
-        return self.url
+        return str(self.image)
     

@@ -4,17 +4,11 @@ from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin
 
 from users.managers import CustomUserManager 
 
-# # Create your models here.
-# class Loan(models.Model):
-#     loan_id = models.CharField(max_length=200)
-#     montant = models.DecimalField(max_digits=20, decimal_places=3)
-#     raison = models.CharField(max_length=255)
-#     # raison = models.ImageField()
-    
-
-    
 
 class CustomUser(AbstractBaseUser,PermissionsMixin):
+    # nom = models.CharField(max_length=255)
+    # prenom = models.CharField(max_length=255)
+    # post = models.CharField(max_length=255)
     phone = models.CharField(unique=True, max_length=8)
     nni = models.CharField(unique=True, max_length=10)
     is_active = models.BooleanField(default=True)

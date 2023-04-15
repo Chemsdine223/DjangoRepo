@@ -6,4 +6,5 @@ app_name = 'photoupload'
 urlpatterns = [
     path('upload/', PhotoUploadView.as_view()),
     path('uploads/<int:pk>', GetPhoto.as_view()),
+
 ]

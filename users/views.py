@@ -23,6 +23,7 @@ class UserLoginView(ObtainAuthToken):
         if user is not None:
             refresh = RefreshToken.for_user(user)
             return Response({
+                'id':user.id,
                 'status': True,
                 'telephone':user.phone,
                 'nni':user.nni,
