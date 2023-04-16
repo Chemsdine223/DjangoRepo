@@ -12,6 +12,19 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class CustomUserRegisterSerializer(serializers.ModelSerializer):
+    
+    nom = serializers.CharField(
+        required = True
+    )
+    
+    prenom = serializers.CharField(
+        required = True
+    )
+    
+    
+    post = serializers.CharField(
+        required = True
+    )
         
     nni = serializers.IntegerField(
         required = True,
@@ -57,6 +70,9 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = (
+            "nom",
+            "prenom",
+            "post",
             "phone",
             "nni",
             "password",
@@ -77,6 +93,9 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
         user = CustomUser.objects.create_user(
             phone= validated_data["phone"],
             nni= validated_data["nni"],
+            nom= validated_data["nom"],
+            prenom= validated_data["prenom"],
+            post= validated_data["post"],
 
         )
         user.set_password(

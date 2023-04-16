@@ -6,13 +6,6 @@ from django.conf import settings
 
 
 
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Set the path to your Firebase service account key
-# FIREBASE_BUCKET_NAME = 'photos'
-
-# from django.conf import settings
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

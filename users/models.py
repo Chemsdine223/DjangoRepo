@@ -6,9 +6,9 @@ from users.managers import CustomUserManager
 
 
 class CustomUser(AbstractBaseUser,PermissionsMixin):
-    # nom = models.CharField(max_length=255)
-    # prenom = models.CharField(max_length=255)
-    # post = models.CharField(max_length=255)
+    nom = models.CharField(max_length=255)
+    prenom = models.CharField(max_length=255)
+    post = models.CharField(max_length=255)
     phone = models.CharField(unique=True, max_length=8)
     nni = models.CharField(unique=True, max_length=10)
     is_active = models.BooleanField(default=True)
@@ -20,9 +20,12 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     USERNAME_FIELD = "phone"
     REQUIRED_FIELDS = [
         'nni',
+        'nom',
+        'prenom',
+        'post',
         ]
     
     
-    # def __str__(self):
-    #     return self.phone
+    def __str__(self):
+        return self.nom
     
