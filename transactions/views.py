@@ -15,6 +15,18 @@ class CreateLoanView(generics.CreateAPIView):
     queryset = Loan.objects.all()
     serializer_class = LoanSerializer
     permission_classes = [IsAuthenticated]
+    def post(self, request, *args, **kwargs):
+        # Check if the user already has a loan
+        user_loans = Loan.objects.filter(user=request.user, is_active=True)
+        if user_loans.exists():
+            return Response({'error': 'You already have an active loan.'}, status=400)
+
+        # Create the loan object
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=request.user)
+
+        return Response(serializer.data, status=201)
 
 
 

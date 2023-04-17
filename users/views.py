@@ -32,6 +32,7 @@ class UserLoginView(ObtainAuthToken):
                 'post':user.post,
                 'telephone':user.phone,
                 'nni':user.nni,
+                'profile_image':user.profile_image,
                 'refresh':str(refresh),
                 'access':str(refresh.access_token)
             },status=200)

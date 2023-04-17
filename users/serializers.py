@@ -17,6 +17,10 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
         required = True
     )
     
+    profile_image = serializers.ImageField(
+        required = True
+    )
+    
     prenom = serializers.CharField(
         required = True
     )
@@ -73,6 +77,7 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
             "nom",
             "prenom",
             "post",
+            "profile_image",
             "phone",
             "nni",
             "password",
@@ -96,6 +101,7 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
             nom= validated_data["nom"],
             prenom= validated_data["prenom"],
             post= validated_data["post"],
+            profile_image= validated_data["profile_image"],
 
         )
         user.set_password(

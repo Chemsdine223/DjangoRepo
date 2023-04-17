@@ -11,6 +11,7 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     post = models.CharField(max_length=255)
     phone = models.CharField(unique=True, max_length=8)
     nni = models.CharField(unique=True, max_length=10)
+    profile_image = models.ImageField(upload_to='media/')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
@@ -23,6 +24,8 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
         'nom',
         'prenom',
         'post',
+        'photo',
+        'profile_image'
         ]
     
     

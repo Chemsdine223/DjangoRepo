@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
-from firebase_admin.storage import storage
+# from firebase_admin.storage import storage
 
 from photoupload.models import PhotoModel
 from .serializers import PhotoSerializer
@@ -19,7 +19,7 @@ class PhotoUploadView(APIView):
             url = request.data.get("url")
             photo = PhotoModel.objects.create(image = image, url = url)
             return Response(
-                {'status':'success'},
+                {'status':'successfully added !'},
                 status=status.HTTP_200_OK
 
             )
