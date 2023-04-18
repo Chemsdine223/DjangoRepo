@@ -17,9 +17,9 @@ from rest_framework.settings import api_settings
 
 class UserLoginView(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
-        nom = request.data.get('nom')
-        prenom = request.data.get('prenom')
-        post = request.data.get('post')
+        # nom = request.data.get('nom')
+        # prenom = request.data.get('prenom')
+        # post = request.data.get('post')
         phone = request.data.get('phone')
         password = request.data.get('password')
         user = authenticate(request, phone=phone, password=password)
@@ -32,10 +32,10 @@ class UserLoginView(ObtainAuthToken):
                 'post':user.post,
                 'telephone':user.phone,
                 'nni':user.nni,
-                'profile_image':user.profile_image,
+                # 'profile_image':user.profile_image,
                 'refresh':str(refresh),
                 'access':str(refresh.access_token)
-            },status=200)
+            },status=Response.status_code)
         else:
             return Response({
                              'message':'Check your credentials'
