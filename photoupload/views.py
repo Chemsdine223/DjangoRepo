@@ -16,8 +16,10 @@ class PhotoUploadView(APIView):
     def post(self, request):
         try:
             image = request.data["image"]
-            url = request.data.get("url")
             photo = PhotoModel.objects.create(image = image, url = url)
+            photo.url = photo.image.url
+            url = request.data.get("url")
+            photo.save()
             return Response(
                 {'status':'successfully added !'},
                 status=status.HTTP_200_OK
@@ -41,6 +43,10 @@ class GetPhoto(generics.RetrieveAPIView):
     queryset = PhotoModel.objects.all()
     serializer_class = PhotoSerializer
     
+    def get(self, request, *args, **kwargs):
+        instance = self.get_object()
+        image_url = instance.image.url
+        return Response({"image_url": image_url})
 
 # class PhotoUploadView(APIView):
 #     serializers = PhotoSerializer
