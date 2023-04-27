@@ -36,9 +36,7 @@ INSTALLED_APPS = [
     'authtokens',
     'rest_framework_simplejwt.token_blacklist',
     'transactions',
-    'photoupload',
-    'supabase'
-    
+    'photoupload',    
 ]
 
 MIDDLEWARE = [

@@ -1,17 +1,17 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from users.models import CustomUser
+from users.models import Client
 from django.contrib.auth.password_validation import validate_password
 # from rest_framework.response import Response
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CustomUser
+        model = Client
         fields = "__all__"
 
 
-class CustomUserRegisterSerializer(serializers.ModelSerializer):
+class ClientRegisterSerializer(serializers.ModelSerializer):
     
     nom = serializers.CharField(
         required = True
@@ -30,11 +30,11 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
         required = True
     )
         
-    nni = serializers.IntegerField(
+    nni = serializers.CharField(
         required = True,
         validators= [
             UniqueValidator(
-                queryset= CustomUser.objects.all(),
+                queryset= Client.objects.all(),
                 
             )
         ]
@@ -43,7 +43,7 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
         required = True,
         validators= [
             UniqueValidator(
-                queryset= CustomUser.objects.all(),
+                queryset= Client.objects.all(),
                 
             )
         ]
@@ -72,7 +72,7 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
     )
     
     class Meta:
-        model = CustomUser
+        model = Client
         fields = (
             "nom",
             "prenom",
@@ -95,7 +95,7 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
         return attrs
     
     def create(self, validated_data):
-        user = CustomUser.objects.create_user(
+        user = Client.objects.create_user(
             phone= validated_data["phone"],
             nni= validated_data["nni"],
             nom= validated_data["nom"],
@@ -109,4 +109,6 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
         )
         user.save()
         return user
-    
+
+
+  
