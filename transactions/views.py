@@ -3,10 +3,16 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from users.models import CustomUser
-from .models import Loan
+from users.models import Client, CustomUser, Client
+from users.serializers import BankLoans
+from .models import Bank, Loan
 from .serializers import LoanSerializer
 from rest_framework import generics, permissions
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.exceptions import AuthenticationFailed
+from rest_framework_simplejwt.tokens import RefreshToken
+
+
 
 # from rest_framework import generics, permissions
 
@@ -34,11 +40,47 @@ class CreateLoanView(generics.CreateAPIView):
 class LoanListView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def get(self,request, id):
-        
-        
-        user=CustomUser.objects.get(id=id)
-        query =Loan.objects.filter(borrower=user)
+    def get(self,request,id):
+        client=Client.objects.get(id=id)
+        query =Loan.objects.filter(borrower=client)
         serializer=LoanSerializer(query,many=True)
         return  Response(serializer.data)
+
+
+
+class BankLoginView(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
         
+        phone = request.data['phone']
+        password = request.data['password']
+        bank = Bank.objects.filter(phone=phone).first()
+        if bank is None:
+            raise AuthenticationFailed('check password')
+        if bank.check_password(password):
+            
+            refresh = RefreshToken.for_user(bank)
+            return Response({
+                'id':bank.id,
+                'nom':bank.nom,
+                'prenom':bank.prenom,
+                'post':bank.post,
+                'telephone':bank.phone,
+                'nni':bank.nni,
+                'refresh':str(refresh),
+                'access':str(refresh.access_token)
+            },status=Response.status_code)
+        else:
+            return Response({
+                             'message':'Check your credentials'
+                            }, status= 401) 
+
+
+
+class GetBankLoansListView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self,request,id):
+        bank = Bank.objects.get(id=id)
+        query = Loan.objects.filter(bank = bank.id)
+        serializer = BankLoans(query, many = True)
+        return Response(serializer.data)

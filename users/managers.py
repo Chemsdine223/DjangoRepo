@@ -10,12 +10,12 @@ class CustomUserManager(BaseUserManager):
         user = self.model(phone=phone, **extra_fileds)
         user.set_password(password)
         user.save(self._db)
+        print(user.password)
         
         return user
         
     def create_superuser(self,phone,password = None, **extra_fields):
         user = self.create_user(
-
             phone,
             password,
             **extra_fields,
@@ -25,16 +25,16 @@ class CustomUserManager(BaseUserManager):
         user.save(using = self._db)
         return user
     
-    def create_adminstrator(self,phone,password = None, **extra_fields):
-        user = self.create_user(
+    # def create_adminstrator(self,phone,password = None, **extra_fields):
+    #     user = self.create_user(
 
-            phone,
-            password,
-            **extra_fields,
-        )
-        user.is_staff = False
-        user.is_superuser = False
-        user.save(using = self._db)
-        return user
+    #         phone,
+    #         password,
+    #         **extra_fields,
+    #     )
+    #     user.is_staff = False
+    #     user.is_superuser = False
+    #     user.save(using = self._db)
+    #     return user
     
     

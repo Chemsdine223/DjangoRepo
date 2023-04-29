@@ -1,11 +1,9 @@
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin
-from photoupload.models import PhotoModel
+# from transactions.models import Bank
 
-from users.managers import CustomUserManager 
-
-
+from users.managers import CustomUserManager
 class CustomUser(AbstractBaseUser,PermissionsMixin):
     nom = models.CharField(max_length=255)
     prenom = models.CharField(max_length=255)
@@ -25,8 +23,6 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
         'nom',
         'prenom',
         'post',
-        # 'photo',
-        # 'profile_image'
         ]
     
     
@@ -40,9 +36,15 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
             
         super().save(*args, **kwargs)
     
-class Admin(CustomUser):
-    pass
-    
 class Client(CustomUser):
+    
     pass
+     
+
+
+# class Adminstrator(CustomUser):
+#     bank = models.OneToOneField(Bank, on_delete=models.CASCADE)
+#     def __str__(self):
+#         return self.nom
+    
     
