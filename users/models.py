@@ -24,7 +24,6 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
         'nom',
         'prenom',
         'post',
-        'photo',
         'profile_image'
         ]
     

@@ -15,7 +15,6 @@ class CustomUserManager(BaseUserManager):
         
     def create_superuser(self,phone,password = None, **extra_fields):
         user = self.create_user(
-
             phone,
             password,
             **extra_fields,
