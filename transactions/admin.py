@@ -5,6 +5,9 @@ from transactions.models import *
 
 
 admin.site.register(Loan)
+admin.site.register(Bank)
+# admin.site.register(Adminstrator)
+
 
 
 
