@@ -70,7 +70,7 @@ class ClientLoginView(ObtainAuthToken):
 
 class ClientRegisterView(generics.CreateAPIView):
     
-    model = get_user_model()
+    model = Client
     serializer_class = ClientRegisterSerializer
     permission_classes = [
         permissions.AllowAny
@@ -83,32 +83,32 @@ class ClientRegisterView(generics.CreateAPIView):
 
 # Admins authentication:
 
-class AadminLoginView(ObtainAuthToken):
-    def post(self, request, *args, **kwargs):
+# class AadminLoginView(ObtainAuthToken):
+#     def post(self, request, *args, **kwargs):
         
-        phone = request.data['phone']
-        password = request.data['password']
-        admin = Adminstrator.objects.filter(phone=phone).first()
-        if admin is None:
-            raise AuthenticationFailed('check password')
-        if admin.check_password(password):
+#         phone = request.data['phone']
+#         password = request.data['password']
+#         admin = Adminstrator.objects.filter(phone=phone).first()
+#         if admin is None:
+#             raise AuthenticationFailed('check password')
+#         if admin.check_password(password):
             
-            refresh = RefreshToken.for_user(admin)
-            return Response({
-                'id':admin.id,
-                'nom':admin.nom,
-                'prenom':admin.prenom,
-                'post':admin.post,
-                'bank':admin.bank,
-                'telephone':admin.phone,
-                'nni':admin.nni,
-                'refresh':str(refresh),
-                'access':str(refresh.access_token)
-            },status=Response.status_code)
-        else:
-            return Response({
-                             'message':'Check your credentials'
-                            }, status= 401) 
+#             refresh = RefreshToken.for_user(admin)
+#             return Response({
+#                 'id':admin.id,
+#                 'nom':admin.nom,
+#                 'prenom':admin.prenom,
+#                 'post':admin.post,
+#                 'bank':admin.bank,
+#                 'telephone':admin.phone,
+#                 'nni':admin.nni,
+#                 'refresh':str(refresh),
+#                 'access':str(refresh.access_token)
+#             },status=Response.status_code)
+#         else:
+#             return Response({
+#                              'message':'Check your credentials'
+#                             }, status= 401) 
 
 
 # @api_view(['GET'])

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from transactions.models import Loan
-from users.models import  Client
+from users.models import Client
 from django.contrib.auth.password_validation import validate_password
 # from rest_framework.response import Response
 
@@ -9,12 +9,7 @@ from django.contrib.auth.password_validation import validate_password
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
-        fields = "__all__"
-# class AdminSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Adminstrator
-#         fields = "__all__"
-        
+        fields = "__all__"   
         
 class BankLoans(serializers.ModelSerializer):
     class Meta:
@@ -46,7 +41,6 @@ class ClientRegisterSerializer(serializers.ModelSerializer):
         validators= [
             UniqueValidator(
                 queryset= Client.objects.all(),
-                
             )
         ]
     )

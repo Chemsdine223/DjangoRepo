@@ -37,7 +37,6 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
         super().save(*args, **kwargs)
     
 class Client(CustomUser):
-    
     pass
      
 
